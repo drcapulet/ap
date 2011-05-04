@@ -1,6 +1,41 @@
-= ap
+= AP - Associated Press API Gem http://http://travis-ci.org/drcapulet/ap.png
 
-Description goes here.
+This is a Ruby API wrapper the the Assosciated Press API v2. This code was based on version 1.1 of the documentation, which was last revised 06/15/2010
+
+== Usage
+
+   require 'ap'
+   AP.configure do |config|
+     config.api_key = "your_api_key"
+   end
+   # Categories & Articles
+   categories = AP.categories
+     => [#<AP::Category:0x10226e118 @content="AP Online Top General Short Headlines", @id="category id", @title="AP Online Top General Short Headlines", @updated=Sat Apr 30 01:25:10 UTC 2011>, ....]
+   category = categories.first
+     => #<AP::Category:0x10226e118 @content="AP Online Top General Short Headlines", @id="category id", @title="AP Online Top General Short Headlines", @updated=Sat Apr 30 01:25:10 UTC 2011>
+   articles = category.articles
+     => [#<AP::Article:0x101e15440 @content="...html content..." @id="...AP Article ID....", @tags=["Property damage", "Tornados", "Humanitarian crises", ...,  "North America"], @link="...link to AP hosted version...", @title="...article title...", @updated=Sat Apr 30 00:07:01 UTC 2011, @authors=["Author 1", "Author 2"]>
+   articles.first.similar
+     => #<AP::Search:0x1018aa618 @query={:count=>20, :searchTerms=>"...article id...", :startPage=>1}, @search_type="similar", @total_results=0>
+   # Searching
+   search = AP::Search.new
+     => #<AP::Search:0x1018bb760 @query={:count=>20, :searchTerms=>[], :startPage=>1}, @search_type="request", @total_results=0>
+   search.contains("Obama").and.contains("Iraq")
+     => #<AP::Search:0x101891870 @query={:count=>20, :searchTerms=>["Obama", "AND", "Iraq"], :startPage=>1}, @search_type="request", @total_results=0>
+   search.fetch
+     => An array of AP::Articles
+   search.next_page?
+     => true
+   search.next_page
+     => An array of AP::Articles
+   search.clear
+   search.scoped do |s|
+     s.contains("Obama").or.contains("Iraq")
+   end.and.contains("Iran")
+   search.to_s
+     => "( Obama OR Iraq ) AND Iran"
+
+Why is all the inofrmation missing? I'm not sure exactly what I can share, so I'm being careful. Either way it gets the information across.
 
 == Contributing to ap
  
@@ -14,6 +49,5 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2011 Alex Coomans. See LICENSE.txt for
-further details.
+Copyright (c) 2011 Alex Coomans. See LICENSE.txt for further details.
 
