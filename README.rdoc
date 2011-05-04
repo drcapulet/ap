@@ -1,6 +1,6 @@
 = AP - Associated Press API Gem http://travis-ci.org/drcapulet/ap.png
 
-This is a Ruby API wrapper the the Assosciated Press API v2. This code was based on version 1.1 of the documentation, which was last revised 06/15/2010
+This is a Ruby API wrapper for the Assosciated Press API v2. This code was based on version 1.1 of the documentation, which was last revised 06/15/2010
 
 == Usage
 
