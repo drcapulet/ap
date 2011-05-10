@@ -16,14 +16,16 @@ begin
     gem.name = "ap"
     gem.homepage = "http://github.com/drcapulet/ap"
     gem.license = "MIT"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Ruby Associated Press API Gem}
+    gem.description = %Q{Ruby gem for interfacing with the Associated Press Breaking News API}
     gem.email = "alex@alexcoomans.com"
     gem.authors = ["Alex Coomans"]
-    # Include your dependencies below. Runtime dependencies are required when using your gem,
-    # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-    #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-    #  gem.add_development_dependency 'rspec', '> 1.2.3'
+    gem.add_runtime_dependency 'httparty', '>=0.7.7'
+    gem.add_development_dependency 'rspec', '>= 2.5.0'
+    gem.add_development_dependency 'webmock', '>= 1.6.2'
+    gem.add_development_dependency 'bundler', '~> 1.0.0'
+    gem.add_development_dependency 'jeweler', '~> 1.5.2'
+    gem.add_development_dependency 'rcov', '>= 0.9.9'
   end
   Jeweler::RubygemsDotOrgTasks.new
 rescue LoadError
@@ -38,14 +40,12 @@ begin
   task :test => :spec
   task :default => :spec
 
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
-    test.verbose = true
-  end
-
-  task :default => :test
+  # require 'rcov/rcovtask'
+  # Rcov::RcovTask.new do |test|
+  #   test.libs << 'test'
+  #   test.pattern = 'test/**/test_*.rb'
+  #   test.verbose = true
+  # end
 
   require 'rake/rdoctask'
   Rake::RDocTask.new do |rdoc|
