@@ -9,28 +9,7 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
-begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-    gem.name = "ap"
-    gem.homepage = "http://github.com/drcapulet/ap"
-    gem.license = "MIT"
-    gem.summary = %Q{Ruby Associated Press API Gem}
-    gem.description = %Q{Ruby gem for interfacing with the Associated Press Breaking News API}
-    gem.email = "alex@alexcoomans.com"
-    gem.authors = ["Alex Coomans"]
-    gem.add_runtime_dependency 'httparty', '>=0.7.7'
-    gem.add_development_dependency 'rspec', '>= 2.5.0'
-    gem.add_development_dependency 'webmock', '>= 1.6.2'
-    gem.add_development_dependency 'bundler', '~> 1.0.0'
-    gem.add_development_dependency 'jeweler', '~> 1.5.2'
-    gem.add_development_dependency 'rcov', '>= 0.9.9'
-  end
-  Jeweler::RubygemsDotOrgTasks.new
-rescue LoadError
-  puts "Jeweler isn't installed. You won't be able to run gem commands"
-end
+Bundler::GemHelper.install_tasks
 
 
 begin
